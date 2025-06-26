@@ -31,6 +31,11 @@ SkySaver simplifies Azure cost management for non-experts:
 - Freemium model (core free, premium analytics soon)
 - Azure-native deployment
 
+## Repository structure
+
+- `backend/` – FastAPI backend (Azure cost API, mock mode, etc.)
+- `frontend/` – Next.js frontend (dashboard UI)
+
 ## Getting Started
 
 _Coming soon: detailed setup instructions._
