@@ -3,8 +3,6 @@
 This document is intended for developers who want to understand, maintain, or extend the Sky Saver backend project.  
 It explains the main Azure Cost Management API endpoints used, the structure of the codebase, and the purpose of each main function.
 
----
-
 ## Project Structure
 
 - **main.py**  
