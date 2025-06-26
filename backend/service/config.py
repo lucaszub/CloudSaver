@@ -1,8 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# Charger les variables d'environnement depuis le fichier .env
-load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+load_dotenv(os.path.join(os.path.dirname(__file__), '../.env'))
 
 CLIENT_ID = os.environ.get('CLIENT_ID')
 CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
