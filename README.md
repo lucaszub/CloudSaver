@@ -11,7 +11,10 @@ SkySaver is an open-source tool to optimize Azure cloud costs for freelancers, s
 
 - [Vision](#vision)
 - [Features](#features)
+- [Repository Structure](#repository-structure)
 - [Getting Started](#getting-started)
+  - [Backend setup (FastAPI)](#backend-setup-fastapi)
+  - [Frontend setup (Next.js)](#frontend-setup-nextjs)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -39,71 +42,106 @@ SkySaver simplifies Azure cost management for non-experts:
 
 ---
 
+## Repository Structure
+
+- `backend/` – FastAPI backend (Azure cost API, mock mode, etc.)
+- `frontend/` – Next.js frontend (dashboard UI)
+
+---
+
 ## Getting Started
 
 ### Prerequisites
 
 - Python 3.9+
+- Node.js 18+ and npm (for frontend)
 - Git
 - A valid Azure subscription (for API access) or enable mock mode for local testing
 
-### Enable Mock Mode (No Azure Account Required)
+---
 
-To use the app without an Azure account, you can enable mock mode:
+### Backend setup (FastAPI)
 
-1. In your `.env` file, add:
+1. **Clone the repository**
+
+   ```sh
+   git clone https://github.com/lucaszub/SkySaver.git
+   cd SkySaver/backend
+   ```
+
+2. **Create and activate a virtual environment**
+
+   ```sh
+   python -m venv venv
+   # On Windows:
+   venv\Scripts\activate
+   # On Mac/Linux:
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4. **Configure environment variables**
+
+   Create a `.env` file in the `backend/` directory. These environment variables are required to connect to the Azure Cost Management API. For details on what values to provide, see [ENV_SETUP.md](./ENV_SETUP.md).
+
+5. **Enable Mock Mode (Optional, No Azure Account Required)**
+
+   To use the app without an Azure account, you can enable mock mode:
+
    ```
    MOCK_MODE=true
    ```
-2. When mock mode is enabled, the backend will return realistic sample cost data for all cost queries.
-3. To disable mock mode and use real Azure data, set `MOCK_MODE=false` or remove the variable.
 
-### Clone the repository
+   When mock mode is enabled, the backend will return realistic sample cost data for all cost queries.
+   To disable mock mode and use real Azure data, set `MOCK_MODE=false` or remove the variable.
 
-```sh
-git clone https://github.com/lucaszub/SkySaver.git
-cd SkySaver/backend
-```
+6. **Run the application**
 
-### Create and activate a virtual environment
+   ```sh
+   uvicorn main:app --reload
+   ```
 
-```sh
-python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-```
+   - The API will be available at [http://localhost:8000](http://localhost:8000)
+   - Interactive documentation (Swagger UI): [http://localhost:8000/docs](http://localhost:8000/docs)
+   - Alternative documentation (ReDoc): [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-### Install dependencies
+7. **(Alternative) Run as a script**
 
-```sh
-pip install -r requirements.txt
-```
+   You can also run the application as a script (for CLI testing):
 
-### Configure environment variables
+   ```sh
+   python main.py
+   ```
 
-Create a `.env` file in the `backend/` directory. These environment variables are required to connect to the Azure Cost Management API. For details on what values to provide, see [ENV_SETUP.md](./ENV_SETUP.md).
+---
 
-### Run the application
+### Frontend setup (Next.js)
 
-You can run the FastAPI application with Uvicorn:
+1. **Navigate to the frontend directory**
 
-```sh
-uvicorn main:app --reload
-```
+   ```sh
+   cd ../frontend
+   ```
 
-- The API will be available at [http://localhost:8000](http://localhost:8000)
-- Interactive documentation (Swagger UI): [http://localhost:8000/docs](http://localhost:8000/docs)
-- Alternative documentation (ReDoc): [http://localhost:8000/redoc](http://localhost:8000/redoc)
+2. **Install dependencies**
 
-### (Alternative) Run as a script
+   ```sh
+   npm install
+   ```
 
-You can also run the application as a script (for CLI testing):
+3. **Start the development server**
 
-```sh
-python main.py
-```
+   ```sh
+   npm run dev
+   ```
+
+   - The app will be available at [http://localhost:3000](http://localhost:3000)
+   - Edit files in `src/` and see changes live.
 
 ---
 
@@ -130,3 +168,5 @@ MIT License
 ---
 
 ## Author
+
+Created by Lucas
