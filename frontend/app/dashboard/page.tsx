@@ -3,6 +3,14 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { DataTable } from "@/components/data-table";
 import { columns } from "./columns";
+import AzureAreaChart from "@/components/chart-area-azure-cost";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // New mock data for Azure cost control
 const MOCK_DATA = [
@@ -45,9 +53,36 @@ export default function DashboardPage() {
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
           <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-            <h1 className="text-2xl font-bold mb-6 px-4 lg:px-6">
+            <h1 className="text-2xl font-bold mb-2 px-4 lg:px-6">
               Cloud Cost Dashboard
             </h1>
+            <div> </div>
+            <div className="flex flex-row justify-start gap-4 px-4 lg:px-6 mb-4">
+              {[1, 2, 3, 4].map((num) => (
+                <Select key={num}>
+                  <SelectTrigger
+                    className="w-[140px] rounded-lg"
+                    aria-label={`Select random ${num}`}
+                  >
+                    <SelectValue placeholder={`Random ${num}`} />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl">
+                    <SelectItem value={`value${num}a`} className="rounded-lg">
+                      Value {num}A
+                    </SelectItem>
+                    <SelectItem value={`value${num}b`} className="rounded-lg">
+                      Value {num}B
+                    </SelectItem>
+                    <SelectItem value={`value${num}c`} className="rounded-lg">
+                      Value {num}C
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              ))}
+            </div>
+            <div className="px-4 lg:px-6">
+              <AzureAreaChart />
+            </div>
             <div className="px-4 lg:px-6">
               <DataTable data={MOCK_DATA} columns={columns} />
             </div>
