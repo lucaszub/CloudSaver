@@ -4,6 +4,17 @@ import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
 import data from "./dashboard/data.json";
 
+// Define columns for the data.json structure
+const columns = [
+  { accessorKey: "id", header: "ID" },
+  { accessorKey: "header", header: "Header" },
+  { accessorKey: "type", header: "Type" },
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "target", header: "Target" },
+  { accessorKey: "limit", header: "Limit" },
+  { accessorKey: "reviewer", header: "Reviewer" },
+];
+
 export default function DashboardTemplatePage() {
   return (
     <div className="h-full flex flex-col">
@@ -15,7 +26,7 @@ export default function DashboardTemplatePage() {
             <div className="px-4 lg:px-6">
               <ChartAreaInteractive />
             </div>
-            <DataTable data={data} />
+            <DataTable data={data} columns={columns} />
           </div>
         </div>
       </div>
