@@ -1,41 +1,107 @@
-# Backend Instructions
+# Cloud Saver
 
-## Project Context
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Status: Planning](https://img.shields.io/badge/status-planning-yellow)]()
 
-- FastAPI backend for Azure cost management
-- Exposes REST API endpoints for frontend consumption
-- Handles business logic, authentication, and Azure API integration
+Cloud Saver is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
 
-## Folder Structure Guidance
+![image](https://github.com/user-attachments/assets/c2b13b31-c1a4-4666-8744-3d39868d8440)
 
-- `api/`: Contains FastAPI route definitions and API logic
-- `apilogic/`: (If present) Contains business logic and service classes
-- `app/`: (If present) May contain application setup, configuration, and submodules
-- `service/`: (If present) Contains service classes for Azure cost, mock data, etc.
-- `config.py`: Centralized configuration for environment variables and settings
-- `main.py`: FastAPI app entry point
-- `requirements.txt`: Python dependencies
+## Current Status
 
-## Best Practices
+Cloud Saver is currently in active development. The core features are functional, allowing users to:
 
-- Use environment variables for secrets and configuration
-- Organize code by feature or responsibility
-- Write clear docstrings for all public functions and classes
-- Add unit tests for critical business logic
-- Use type hints for all function signatures
+- View a **daily cost evolution chart** (line chart)
+- See the **Top 10 cost-consuming Azure resources** (bar chart)
+- Use either **mock data** for testing or real Azure Cost Management API data
+- Deploy quickly with a lightweight stack (Next.js frontend + FastAPI backend)
 
-## What Not to Do
-
-- Do not hardcode secrets or credentials
-- Do not expose internal logic directly via API endpoints
-- Do not mix API and business logic in the same file
-
-## Example: Adding a New API Endpoint
-
-- Add a new route in `api/` (e.g., `api/costs.py`)
-- Implement business logic in `apilogic/` or `service/`
-- Register the route in `main.py`
+The project aims to remain simple to deploy and easy to use, with no mandatory database setup for now.
 
 ---
 
-You can copy-paste these instructions into your backend README.md to help contributors understand the backend structure and best practices.
+## Features
+
+### Available now
+
+- Daily cost trends visualization
+- Top 10 resource cost breakdown
+- Support for mock and real data sources
+- Fast deployment with minimal configuration
+
+### Planned features
+
+- Advanced filtering options to explore costs by different dimensions (resource group, tags, time range, etc.)
+- Intelligent detection and automated suggestions for cost optimizations
+- Multi-cloud support (extending beyond Azure)
+- User authentication and multi-user support
+- Improved caching and rate limiting handling for API calls
+
+---
+
+## Roadmap
+
+| Milestone                          | Target Date | Status  |
+| ---------------------------------- | ----------- | ------- |
+| Core visualization features        | Completed   | ✅      |
+| Advanced filters                   | Q4 2025     | Planned |
+| Automated cost optimization alerts | Q1 2026     | Planned |
+| Multi-cloud support                | Mid 2026    | Planned |
+| User management & authentication   | Late 2026   | Planned |
+
+---
+
+## Installation & Usage
+
+1. Clone the repo  
+   git clone https://github.com/lucaszub/CloudSaver.git
+   cd cloud-saver
+
+2. Configure your environment variables  
+   See [../ENV_SETUP.md](../ENV_SETUP.md) for details on how to set up your `.env` file for Azure Cost Management API access.
+
+3. Install backend dependencies  
+   cd backend
+   pip install -r requirements.txt
+
+4. Install frontend dependencies  
+   cd ../frontend
+   npm install
+
+5. Run backend and frontend  
+   In backend folder:
+   uvicorn main:app --reload
+
+   In frontend folder:
+   npm run dev
+
+6. Open your browser at `http://localhost:3000` to access the dashboard.
+
+---
+
+## Contribution
+
+Cloud Saver is an open source project and welcomes contributions!  
+If you want to help improve the tool, please:
+
+- Check the [issues](https://github.com/lucaszub/CloudSaver/issues) for tasks and feature requests
+- Open a new issue if you find bugs or want to suggest new features
+- Fork the repo and submit pull requests with clear descriptions
+
+Your feedback and ideas will help shape the future of Cloud Saver.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+If you want to discuss the project, request features, or need help deploying Cloud Saver in your environment, feel free to contact me at [zubiarrainluas@gmail.com].
+
+---
+
+_Thank you for your interest in Cloud Saver!_

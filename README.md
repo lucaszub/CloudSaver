@@ -7,7 +7,6 @@ Cloud Saver is an open source tool designed to help teams visualize and analyze 
 
 ![image](https://github.com/user-attachments/assets/c2b13b31-c1a4-4666-8744-3d39868d8440)
 
-
 ## Current Status
 
 Cloud Saver is currently in active development. The core features are functional, allowing users to:
@@ -58,22 +57,25 @@ The project aims to remain simple to deploy and easy to use, with no mandatory d
    git clone https://github.com/lucaszub/CloudSaver.git
    cd cloud-saver
 
-2. Install backend dependencies  
+2. Configure your environment variables  
+   See [ENV_SETUP.md](ENV_SETUP.md) for details on how to set up your `.env` file for Azure Cost Management API access.
+
+3. Install backend dependencies  
    cd backend
    pip install -r requirements.txt
 
-3. Install frontend dependencies  
+4. Install frontend dependencies  
    cd ../frontend
    npm install
 
-4. Run backend and frontend  
+5. Run backend and frontend  
    In backend folder:
    uvicorn main:app --reload
 
    In frontend folder:
    npm run dev
 
-5. Open your browser at `http://localhost:3000` to access the dashboard.
+6. Open your browser at `http://localhost:3000` to access the dashboard.
 
 ---
 

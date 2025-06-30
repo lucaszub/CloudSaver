@@ -1,10 +1,11 @@
 # Cloud Saver
 
----
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Status: Planning](https://img.shields.io/badge/status-planning-yellow)]()
 
-**Cloud Saver** is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
+Cloud Saver is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
 
----
+![image](https://github.com/user-attachments/assets/c2b13b31-c1a4-4666-8744-3d39868d8440)
 
 ## Current Status
 
@@ -53,37 +54,28 @@ The project aims to remain simple to deploy and easy to use, with no mandatory d
 ## Installation & Usage
 
 1. Clone the repo  
-   git clone https://github.com/yourusername/cloud-saver.git
+   git clone https://github.com/lucaszub/CloudSaver.git
    cd cloud-saver
 
-2. Install backend dependencies  
+2. Configure your environment variables  
+   See [ENV_SETUP.md](ENV_SETUP.md) for details on how to set up your `.env` file for Azure Cost Management API access.
+
+3. Install backend dependencies  
    cd backend
    pip install -r requirements.txt
 
-3. Install frontend dependencies  
+4. Install frontend dependencies  
    cd ../frontend
    npm install
 
-4. Run backend and frontend  
+5. Run backend and frontend  
    In backend folder:
    uvicorn main:app --reload
 
    In frontend folder:
    npm run dev
 
-5. Open your browser at `http://localhost:3000` to access the dashboard.
-
----
-
-## How to Start the Frontend
-
-1. Open a terminal and navigate to the `frontend` directory:
-   cd frontend
-2. Install dependencies:
-   npm install
-3. Start the development server:
-   npm run dev
-4. The app will be available at [http://localhost:3000](http://localhost:3000)
+6. Open your browser at `http://localhost:3000` to access the dashboard.
 
 ---
 
@@ -92,7 +84,7 @@ The project aims to remain simple to deploy and easy to use, with no mandatory d
 Cloud Saver is an open source project and welcomes contributions!  
 If you want to help improve the tool, please:
 
-- Check the [issues](https://github.com/yourusername/cloud-saver/issues) for tasks and feature requests
+- Check the [issues](https://github.com/lucaszub/CloudSaver/issues) for tasks and feature requests
 - Open a new issue if you find bugs or want to suggest new features
 - Fork the repo and submit pull requests with clear descriptions
 
@@ -108,7 +100,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-If you want to discuss the project, request features, or need help deploying Cloud Saver in your environment, feel free to contact me at [your-email@example.com].
+If you want to discuss the project, request features, or need help deploying Cloud Saver in your environment, feel free to contact me at [zubiarrainluas@gmail.com].
 
 ---
 
