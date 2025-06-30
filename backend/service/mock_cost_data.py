@@ -17,21 +17,39 @@ def get_mock_cost_data():
 
 def get_mock_daily_costs():
     return {
-        "@odata.context": "https://management.azure.com/$metadata#Microsoft.CostManagement/Query/$entity",
-        "columns": [
-            {"name": "PreTaxCost", "type": "Number"},
-            {"name": "UsageDate", "type": "String"},
-            {"name": "ServiceName", "type": "String"}
-        ],
-        "rows": [
-            [3.5, "2025-06-01", "Virtual Machines"],
-            [1.2, "2025-06-01", "App Service"],
-            [0.7, "2025-06-01", "Storage"],
-            [3.7, "2025-06-02", "Virtual Machines"],
-            [1.3, "2025-06-02", "App Service"],
-            [0.8, "2025-06-02", "Storage"]
-        ],
-        "id": None
+        "id": "subscriptions/bac27588-84cf-4081-85ac-370727fde459/providers/Microsoft.CostManagement/query/40f703b5-8471-4736-abba-10dd56a76e13",
+        "name": "40f703b5-8471-4736-abba-10dd56a76e13",
+        "type": "Microsoft.CostManagement/query",
+        "location": None,
+        "sku": None,
+        "eTag": None,
+        "properties": {
+            "nextLink": None,
+            "columns": [
+                {"name": "PreTaxCost", "type": "Number"},
+                {"name": "UsageDate", "type": "Number"},
+                {"name": "ServiceName", "type": "String"},
+                {"name": "Currency", "type": "String"}
+            ],
+            "rows": [
+                [306.11, 20250606, "Microsoft Fabric", "EUR"],
+                [101.11, 20250607, "Microsoft Fabric", "EUR"],
+                [201.11, 20250608, "Microsoft Fabric", "EUR"],
+                [629.68, 20250609, "Azure Data Factory v2", "EUR"],
+                [0, 20250609, "Bandwidth", "EUR"],
+                [111.11, 20250609, "Microsoft Fabric", "EUR"],
+                [50.68, 20250609, "Storage", "EUR"],
+                [710.27, 20250610, "Azure Data Factory v2", "EUR"],
+                [970.08, 20250610, "Azure Databricks", "EUR"],
+                [223.85, 20250610, "Azure Synapse Analytics", "EUR"],
+                [0.01, 20250610, "Bandwidth", "EUR"],
+                [111.11, 20250610, "Microsoft Fabric", "EUR"],
+                [481.18, 20250610, "NAT Gateway", "EUR"],
+                [118.88, 20250610, "Storage", "EUR"],
+                [297.91, 20250610, "Virtual Machines", "EUR"],
+                [50.97, 20250610, "Virtual Network", "EUR"]
+            ]
+        }
     }
 
 def get_mock_costs_by_resource_group():

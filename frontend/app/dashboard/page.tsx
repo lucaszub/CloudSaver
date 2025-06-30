@@ -1,16 +1,14 @@
+"use client";
+
 import React from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { DataTable } from "@/components/data-table";
 import { columns } from "./columns";
-import AzureAreaChart from "@/components/chart-area-azure-cost";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import AzureAreaChart, {
+  Filters as AzureAreaChartFilters,
+} from "@/components/chart-area-azure-cost";
+import { SectionCards } from "@/components/cards/section-cards-azure-cost";
 
 // New mock data for Azure cost control
 const MOCK_DATA = [
@@ -23,30 +21,100 @@ const MOCK_DATA = [
     totalCost: 14.4,
     budget: 20,
     costStatus: "Within Budget",
+    serviceType: "Virtual Machine",
+    subscription: "Production",
+    resourceGroup: "rg-infra-prod",
+    region: "West Europe",
   },
   {
     id: 2,
     date: "2025-06-01",
     resource: "Azure SQL Database",
-    usage: 50,
-    unitCost: 0.25,
-    totalCost: 12.5,
-    budget: 15,
+    usage: 250,
+    unitCost: 0.06,
+    totalCost: 15.0,
+    budget: 18,
     costStatus: "Within Budget",
+    serviceType: "Database",
+    subscription: "Production",
+    resourceGroup: "rg-data-prod",
+    region: "West Europe",
   },
   {
     id: 3,
     date: "2025-06-01",
     resource: "Blob Storage",
-    usage: 500,
-    unitCost: 0.02,
-    totalCost: 10,
+    usage: 2000,
+    unitCost: 0.005,
+    totalCost: 10.0,
     budget: 8,
     costStatus: "Over Budget",
+    serviceType: "Storage",
+    subscription: "Development",
+    resourceGroup: "rg-storage-dev",
+    region: "East US",
+  },
+  {
+    id: 4,
+    date: "2025-06-01",
+    resource: "Azure Load Balancer",
+    usage: 30,
+    unitCost: 0.15,
+    totalCost: 4.5,
+    budget: 6,
+    costStatus: "Within Budget",
+    serviceType: "Network",
+    subscription: "Testing",
+    resourceGroup: "rg-network-test",
+    region: "France Central",
+  },
+  {
+    id: 5,
+    date: "2025-06-01",
+    resource: "Azure App Service",
+    usage: 60,
+    unitCost: 0.2,
+    totalCost: 12.0,
+    budget: 15,
+    costStatus: "Within Budget",
+    serviceType: "App Service",
+    subscription: "Production",
+    resourceGroup: "rg-app-prod",
+    region: "West Europe",
   },
 ];
 
 export default function DashboardPage() {
+  // State for each filter
+  const [resource, setResource] = React.useState("all");
+  const [subscription, setSubscription] = React.useState("all");
+  const [timeRange, setTimeRange] = React.useState("month");
+  const [costStatus, setCostStatus] = React.useState("all");
+  const [serviceType, setServiceType] = React.useState("all");
+  const [resourceGroup, setResourceGroup] = React.useState("all");
+  const [region, setRegion] = React.useState("all");
+
+  // Filter MOCK_DATA for the table (optional, adapt as needed)
+  const filteredTableData = MOCK_DATA.filter((item) => {
+    const resourceMatch =
+      resource === "all" ||
+      item.resource ===
+        (resource === "vm"
+          ? "VM - Standard_D2s_v3"
+          : resource === "sql"
+          ? "Azure SQL Database"
+          : resource === "blob"
+          ? "Blob Storage"
+          : "");
+    const costStatusMatch =
+      costStatus === "all" ||
+      (costStatus === "within"
+        ? item.costStatus === "Within Budget"
+        : item.costStatus === "Over Budget");
+    // Subscription, serviceType, resourceGroup, region are not in MOCK_DATA, so ignored here
+    return resourceMatch && costStatusMatch;
+  });
+
   return (
     <div className="h-full flex flex-col">
       <SiteHeader />
@@ -56,102 +124,42 @@ export default function DashboardPage() {
             <h1 className="text-2xl font-bold  px-4 lg:px-6">
               Cloud Cost Dashboard
             </h1>
-            <div> </div>
-            <div className="flex flex-row justify-end gap-4 px-4 lg:px-6 mb-4">
-              {/* Azure cost filters */}
-              <Select>
-                <SelectTrigger
-                  className="w-[160px] rounded-lg"
-                  aria-label="Select resource"
-                >
-                  <SelectValue placeholder="Resource" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl">
-                  <SelectItem value="all" className="rounded-lg">
-                    All Resources
-                  </SelectItem>
-                  <SelectItem value="vm" className="rounded-lg">
-                    VM - Standard_D2s_v3
-                  </SelectItem>
-                  <SelectItem value="sql" className="rounded-lg">
-                    Azure SQL Database
-                  </SelectItem>
-                  <SelectItem value="blob" className="rounded-lg">
-                    Blob Storage
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger
-                  className="w-[160px] rounded-lg"
-                  aria-label="Select subscription"
-                >
-                  <SelectValue placeholder="Subscription" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl">
-                  <SelectItem value="all" className="rounded-lg">
-                    All Subscriptions
-                  </SelectItem>
-                  <SelectItem value="prod" className="rounded-lg">
-                    Production
-                  </SelectItem>
-                  <SelectItem value="dev" className="rounded-lg">
-                    Development
-                  </SelectItem>
-                  <SelectItem value="test" className="rounded-lg">
-                    Testing
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger
-                  className="w-[160px] rounded-lg"
-                  aria-label="Select time range"
-                >
-                  <SelectValue placeholder="Time Range" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl">
-                  <SelectItem value="90d" className="rounded-lg">
-                    Last 3 months
-                  </SelectItem>
-                  <SelectItem value="30d" className="rounded-lg">
-                    Last 30 days
-                  </SelectItem>
-                  <SelectItem value="7d" className="rounded-lg">
-                    Last 7 days
-                  </SelectItem>
-                  <SelectItem value="custom" className="rounded-lg">
-                    Custom Range
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger
-                  className="w-[160px] rounded-lg"
-                  aria-label="Select cost status"
-                >
-                  <SelectValue placeholder="Cost Status" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl">
-                  <SelectItem value="all" className="rounded-lg">
-                    All
-                  </SelectItem>
-                  <SelectItem value="within" className="rounded-lg">
-                    Within Budget
-                  </SelectItem>
-                  <SelectItem value="over" className="rounded-lg">
-                    Over Budget
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="px-4 lg:px-6 gap-10">
-              <AzureAreaChart />
-            </div>
-            <div className="h-10" />{" "}
-            {/* Ajoute un espace vertical entre le chart et le tableau */}
             <div className="px-4 lg:px-6">
-              <DataTable data={MOCK_DATA} columns={columns} />
+              <AzureAreaChartFilters
+                resource={resource}
+                setResource={setResource}
+                timeRange={timeRange}
+                setTimeRange={setTimeRange}
+                costStatus={costStatus}
+                setCostStatus={setCostStatus}
+                serviceType={serviceType}
+                setServiceType={setServiceType}
+                subscription={subscription}
+                setSubscription={setSubscription}
+                resourceGroup={resourceGroup}
+                setResourceGroup={setResourceGroup}
+                region={region}
+                setRegion={setRegion}
+              />
+            </div>
+
+            <SectionCards />
+
+            <div className="px-4 lg:px-6 gap-10">
+              <AzureAreaChart
+                resource={resource}
+                timeRange={timeRange}
+                costStatus={costStatus}
+                serviceType={serviceType}
+                subscription={subscription}
+                resourceGroup={resourceGroup}
+                region={region}
+              />
+            </div>
+            <div className="h-10" />
+            {/* Add vertical space between chart and table */}
+            <div className="px-4 lg:px-6">
+              <DataTable data={filteredTableData} columns={columns} />
             </div>
           </div>
         </div>

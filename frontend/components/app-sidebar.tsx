@@ -50,6 +50,11 @@ const data = {
       url: "/dashboard",
       icon: IconListDetails,
     },
+    {
+      title: "Dashboard api",
+      url: "/dashboard-test-api",
+      icon: IconListDetails,
+    },
   ],
   navClouds: [
     {
