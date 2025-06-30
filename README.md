@@ -1,172 +1,104 @@
-# SkySaver
+# Cloud Saver
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Status: Planning](https://img.shields.io/badge/status-planning-yellow)]()
 
-SkySaver is an open-source tool to optimize Azure cloud costs for freelancers, small businesses, and developers. Get real-time insights, actionable savings, and a modern dashboard.
+Cloud Saver is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
 
----
+## ![alt text](image.png)
 
-## Table of Contents
+## Current Status
 
-- [Vision](#vision)
-- [Features](#features)
-- [Repository Structure](#repository-structure)
-- [Getting Started](#getting-started)
-  - [Backend setup (FastAPI)](#backend-setup-fastapi)
-  - [Frontend setup (Next.js)](#frontend-setup-nextjs)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+Cloud Saver is currently in active development. The core features are functional, allowing users to:
 
----
+- View a **daily cost evolution chart** (line chart)
+- See the **Top 10 cost-consuming Azure resources** (bar chart)
+- Use either **mock data** for testing or real Azure Cost Management API data
+- Deploy quickly with a lightweight stack (Next.js frontend + FastAPI backend)
 
-## Vision
-
-SkySaver simplifies Azure cost management for non-experts:
-
-- 📊 Track and visualize spending
-- 💡 Get actionable recommendations
-- ⚡ Enjoy a fast, modern dashboard
+The project aims to remain simple to deploy and easy to use, with no mandatory database setup for now.
 
 ---
 
 ## Features
 
-- Cost tracking via Azure APIs
-- Idle resource detection
-- Responsive Next.js dashboard
-- Freemium model (core free, premium analytics soon)
-- Azure-native deployment
+### Available now
 
----
+- Daily cost trends visualization
+- Top 10 resource cost breakdown
+- Support for mock and real data sources
+- Fast deployment with minimal configuration
 
-## Repository Structure
+### Planned features
 
-- `backend/` – FastAPI backend (Azure cost API, mock mode, etc.)
-- `frontend/` – Next.js frontend (dashboard UI)
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.9+
-- Node.js 18+ and npm (for frontend)
-- Git
-- A valid Azure subscription (for API access) or enable mock mode for local testing
-
----
-
-### Backend setup (FastAPI)
-
-1. **Clone the repository**
-
-   ```sh
-   git clone https://github.com/lucaszub/SkySaver.git
-   cd SkySaver/backend
-   ```
-
-2. **Create and activate a virtual environment**
-
-   ```sh
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On Mac/Linux:
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies**
-
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-4. **Configure environment variables**
-
-   Create a `.env` file in the `backend/` directory. These environment variables are required to connect to the Azure Cost Management API. For details on what values to provide, see [ENV_SETUP.md](./ENV_SETUP.md).
-
-5. **Enable Mock Mode (Optional, No Azure Account Required)**
-
-   To use the app without an Azure account, you can enable mock mode:
-
-   ```
-   MOCK_MODE=true
-   ```
-
-   When mock mode is enabled, the backend will return realistic sample cost data for all cost queries.
-   To disable mock mode and use real Azure data, set `MOCK_MODE=false` or remove the variable.
-
-6. **Run the application**
-
-   ```sh
-   uvicorn main:app --reload
-   ```
-
-   - The API will be available at [http://localhost:8000](http://localhost:8000)
-   - Interactive documentation (Swagger UI): [http://localhost:8000/docs](http://localhost:8000/docs)
-   - Alternative documentation (ReDoc): [http://localhost:8000/redoc](http://localhost:8000/redoc)
-
-7. **(Alternative) Run as a script**
-
-   You can also run the application as a script (for CLI testing):
-
-   ```sh
-   python main.py
-   ```
-
----
-
-### Frontend setup (Next.js)
-
-1. **Navigate to the frontend directory**
-
-   ```sh
-   cd ../frontend
-   ```
-
-2. **Install dependencies**
-
-   ```sh
-   npm install
-   ```
-
-3. **Start the development server**
-
-   ```sh
-   npm run dev
-   ```
-
-   - The app will be available at [http://localhost:3000](http://localhost:3000)
-   - Edit files in `src/` and see changes live.
+- Advanced filtering options to explore costs by different dimensions (resource group, tags, time range, etc.)
+- Intelligent detection and automated suggestions for cost optimizations
+- Multi-cloud support (extending beyond Azure)
+- User authentication and multi-user support
+- Improved caching and rate limiting handling for API calls
 
 ---
 
 ## Roadmap
 
-| Period  | Goal                                      |
-| ------- | ----------------------------------------- |
-| Q3 2025 | PoC: Cost tracking, basic recommendations |
-| Q4 2025 | MVP: Auth, premium analytics              |
-| 2026+   | Alerts, AI, multi-cloud support           |
+| Milestone                          | Target Date | Status  |
+| ---------------------------------- | ----------- | ------- |
+| Core visualization features        | Completed   | ✅      |
+| Advanced filters                   | Q4 2025     | Planned |
+| Automated cost optimization alerts | Q1 2026     | Planned |
+| Multi-cloud support                | Mid 2026    | Planned |
+| User management & authentication   | Late 2026   | Planned |
 
 ---
 
-## Contributing
+## Installation & Usage
 
-We welcome contributors! Open issues, suggest features, or join development.
+1. Clone the repo  
+   git clone https://github.com/lucaszub/CloudSaver.git
+   cd cloud-saver
+
+2. Install backend dependencies  
+   cd backend
+   pip install -r requirements.txt
+
+3. Install frontend dependencies  
+   cd ../frontend
+   npm install
+
+4. Run backend and frontend  
+   In backend folder:
+   uvicorn main:app --reload
+
+   In frontend folder:
+   npm run dev
+
+5. Open your browser at `http://localhost:3000` to access the dashboard.
+
+---
+
+## Contribution
+
+Cloud Saver is an open source project and welcomes contributions!  
+If you want to help improve the tool, please:
+
+- Check the [issues](https://github.com/lucaszub/CloudSaver/issues) for tasks and feature requests
+- Open a new issue if you find bugs or want to suggest new features
+- Fork the repo and submit pull requests with clear descriptions
+
+Your feedback and ideas will help shape the future of Cloud Saver.
 
 ---
 
 ## License
 
-MIT License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Author
+## Contact
 
-Created by Lucas
+If you want to discuss the project, request features, or need help deploying Cloud Saver in your environment, feel free to contact me at [zubiarrainluas@gmail.com].
+
+---
+
+_Thank you for your interest in Cloud Saver!_
