@@ -5,7 +5,8 @@
 
 Cloud Saver is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
 
-![image](https://github.com/user-attachments/assets/c2b13b31-c1a4-4666-8744-3d39868d8440)
+![image](https://github.com/user-attachments/assets/259d1fbe-6cdf-4b18-9562-9a6cdcee9616)
+
 
 ## Current Status
 
