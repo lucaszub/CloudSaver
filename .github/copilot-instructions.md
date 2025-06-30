@@ -15,6 +15,9 @@
 - Never access Azure API directly from frontend
 - Use environment variables for secrets/config
 - Add docstrings/comments for public functions
+- **Do NOT use `useEffect` for initial data fetching in pages/components.**
+  - Use async/await and server-side data fetching (e.g., Next.js Server Components, `getServerSideProps`, or async page components) for all data that can be fetched at build or request time.
+  - Only use `useEffect` for client-side interactivity or when data must be fetched after initial render.
 
 ## Folder Structure
 
@@ -31,6 +34,7 @@
 ## What Not to Do
 
 - No global CSS, no SSR dynamic code, no secrets in source, no direct Azure API calls from frontend
+- **No `useEffect` for initial data fetches in pages/components. Use async/await and server-side data fetching instead.**
 
 ## Example: Add API Endpoint (Backend)
 

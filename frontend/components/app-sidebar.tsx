@@ -35,19 +35,14 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Lucas Zubiarrain",
+    email: "zubiarrainlucas@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
     {
-      title: "Dashboard Template",
-      url: "/",
-      icon: IconDashboard,
-    },
-    {
       title: "Dashboard",
-      url: "/dashboard",
+      url: "/",
       icon: IconListDetails,
     },
   ],
@@ -147,7 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold"> Sky Saver</span>
+                <span className="text-base font-semibold"> Cloud Saver</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

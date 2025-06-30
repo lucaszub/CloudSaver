@@ -16,22 +16,72 @@ def get_mock_cost_data():
     }
 
 def get_mock_daily_costs():
+    # Generate 30 days of realistic Azure cost data for multiple services
+    import random
+    from datetime import datetime, timedelta
+
+    start_date = datetime(2025, 6, 1)
+    services = [
+        "Virtual Machines", "App Service", "Storage", "SQL Database", "Cosmos DB",
+        "Azure Data Factory v2", "Azure Databricks", "Azure Synapse Analytics",
+        "NAT Gateway", "Virtual Network", "Bandwidth", "Microsoft Fabric"
+    ]
+    currency = "EUR"
+    rows = []
+    random.seed(42)
+    for i in range(30):
+        day = start_date + timedelta(days=i)
+        usage_date = int(day.strftime("%Y%m%d"))
+        # Each day, generate a random cost for each service (simulate usage patterns)
+        for service in services:
+            # Simulate realistic cost ranges per service
+            if service == "Virtual Machines":
+                cost = round(random.uniform(100, 400), 2)
+            elif service == "App Service":
+                cost = round(random.uniform(20, 80), 2)
+            elif service == "Storage":
+                cost = round(random.uniform(10, 50), 2)
+            elif service == "SQL Database":
+                cost = round(random.uniform(15, 60), 2)
+            elif service == "Cosmos DB":
+                cost = round(random.uniform(5, 30), 2)
+            elif service == "Azure Data Factory v2":
+                cost = round(random.uniform(50, 200), 2)
+            elif service == "Azure Databricks":
+                cost = round(random.uniform(100, 500), 2)
+            elif service == "Azure Synapse Analytics":
+                cost = round(random.uniform(50, 250), 2)
+            elif service == "NAT Gateway":
+                cost = round(random.uniform(20, 100), 2)
+            elif service == "Virtual Network":
+                cost = round(random.uniform(5, 30), 2)
+            elif service == "Bandwidth":
+                cost = round(random.uniform(0, 5), 2)
+            elif service == "Microsoft Fabric":
+                cost = round(random.uniform(50, 300), 2)
+            else:
+                cost = round(random.uniform(1, 10), 2)
+            # Add some zero-cost days for Bandwidth to simulate free usage
+            if service == "Bandwidth" and random.random() < 0.3:
+                cost = 0.0
+            rows.append([cost, usage_date, service, currency])
     return {
-        "@odata.context": "https://management.azure.com/$metadata#Microsoft.CostManagement/Query/$entity",
-        "columns": [
-            {"name": "PreTaxCost", "type": "Number"},
-            {"name": "UsageDate", "type": "String"},
-            {"name": "ServiceName", "type": "String"}
-        ],
-        "rows": [
-            [3.5, "2025-06-01", "Virtual Machines"],
-            [1.2, "2025-06-01", "App Service"],
-            [0.7, "2025-06-01", "Storage"],
-            [3.7, "2025-06-02", "Virtual Machines"],
-            [1.3, "2025-06-02", "App Service"],
-            [0.8, "2025-06-02", "Storage"]
-        ],
-        "id": None
+        "id": "subscriptions/bac27588-84cf-4081-85ac-370727fde459/providers/Microsoft.CostManagement/query/40f703b5-8471-4736-abba-10dd56a76e13",
+        "name": "40f703b5-8471-4736-abba-10dd56a76e13",
+        "type": "Microsoft.CostManagement/query",
+        "location": None,
+        "sku": None,
+        "eTag": None,
+        "properties": {
+            "nextLink": None,
+            "columns": [
+                {"name": "PreTaxCost", "type": "Number"},
+                {"name": "UsageDate", "type": "Number"},
+                {"name": "ServiceName", "type": "String"},
+                {"name": "Currency", "type": "String"}
+            ],
+            "rows": rows
+        }
     }
 
 def get_mock_costs_by_resource_group():
