@@ -1,5 +1,6 @@
 // app/page.tsx
 import ChartAreaAzureCostClient from "@/components/charts/chart-area-azure-cost-client";
+import { ChartAreaAzureCostTable } from "@/components/charts/chart-area-azure-cost-table";
 
 export interface CostItem {
   id: string;
@@ -47,7 +48,12 @@ export default async function ChartAreaAzureCostFetch() {
     }));
     chartData.sort((a, b) => a.date.localeCompare(b.date));
 
-    return <ChartAreaAzureCostClient chartData={chartData} />;
+    return (
+      <>
+        <ChartAreaAzureCostClient chartData={chartData} />
+        <ChartAreaAzureCostTable rows={data.properties.rows} />
+      </>
+    );
   } catch (error: any) {
     return (
       <div className="p-4 text-red-600 bg-red-50 border border-red-200 rounded">

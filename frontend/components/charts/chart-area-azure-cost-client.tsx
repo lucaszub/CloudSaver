@@ -27,13 +27,16 @@ export default function ChartAreaAzureCostClient({
   const chartConfig = {
     cost: {
       label: "Actual Cost (€)",
-      color: "var(--chart-4)",
+      color: "var(--chart-1)",
     },
     budget: {
       label: "Budget (€)",
-      color: "var(--chart-1)",
+      color: "var(--chart-2)",
     },
   };
+
+  // Calculate total cost
+  const totalCost = chartData.reduce((sum, item) => sum + item.cost, 0);
 
   return (
     <Card>
@@ -41,6 +44,16 @@ export default function ChartAreaAzureCostClient({
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Azure Cloud Daily Cost</CardTitle>
           <CardDescription>Actual cost per day (API live)</CardDescription>
+        </div>
+        <div
+          className="mt-2 text-lg font-semibold"
+          style={{ color: "var(--chart-1)" }}
+        >
+          Total cost:{" "}
+          {totalCost.toLocaleString("fr-FR", {
+            style: "currency",
+            currency: "EUR",
+          })}
         </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
@@ -53,10 +66,14 @@ export default function ChartAreaAzureCostClient({
               <linearGradient id="fillCost" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--chart-4)"
+                  stopColor="var(--chart-1)"
                   stopOpacity={0.8}
                 />
-                <stop offset="95%" stopColor="var(--chart-4)" stopOpacity={0} />
+                <stop
+                  offset="100%"
+                  stopColor="var(--chart-1)"
+                  stopOpacity={0}
+                />
               </linearGradient>
             </defs>
             <XAxis
