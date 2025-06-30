@@ -1,86 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cloud Saver
 
-## Getting Started
+---
 
-First, run the development server:
+**Cloud Saver** is an open source tool designed to help teams visualize and analyze their Azure cloud costs with simplicity and clarity. It provides quick insights into cost evolution and identifies the top resource consumers, enabling better cloud cost management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Current Status
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Cloud Saver is currently in active development. The core features are functional, allowing users to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- View a **daily cost evolution chart** (line chart)
+- See the **Top 10 cost-consuming Azure resources** (bar chart)
+- Use either **mock data** for testing or real Azure Cost Management API data
+- Deploy quickly with a lightweight stack (Next.js frontend + FastAPI backend)
 
-## Learn More
+The project aims to remain simple to deploy and easy to use, with no mandatory database setup for now.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Available now
 
-## Deploy on Vercel
+- Daily cost trends visualization
+- Top 10 resource cost breakdown
+- Support for mock and real data sources
+- Fast deployment with minimal configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Planned features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Advanced filtering options to explore costs by different dimensions (resource group, tags, time range, etc.)
+- Intelligent detection and automated suggestions for cost optimizations
+- Multi-cloud support (extending beyond Azure)
+- User authentication and multi-user support
+- Improved caching and rate limiting handling for API calls
 
-# Frontend Instructions
+---
 
-## Project Context
+## Roadmap
 
-- Next.js project (App Router) with TypeScript
-- Dashboard, sidebar, navigation, reusable UI components
-- Uses Tailwind CSS for styling
+| Milestone                          | Target Date | Status  |
+| ---------------------------------- | ----------- | ------- |
+| Core visualization features        | Completed   | ✅      |
+| Advanced filters                   | Q4 2025     | Planned |
+| Automated cost optimization alerts | Q1 2026     | Planned |
+| Multi-cloud support                | Mid 2026    | Planned |
+| User management & authentication   | Late 2026   | Planned |
 
-## Folder Structure Guidance for the Sidebar
+---
 
-- `components/app-sidebar.tsx`: Main entry point for the sidebar. Composes the sidebar using reusable UI and navigation components.
-- `components/nav-main.tsx`: Handles the main navigation items displayed in the sidebar. Edits here change the main menu.
-- `components/nav-user.tsx`: Displays user information (avatar, name, etc.) at the bottom of the sidebar.
-- `components/nav-secondary.tsx`: Handles secondary navigation or settings links in the sidebar.
-- `components/nav-documents.tsx`: (If present) Handles document-related links or quick access in the sidebar.
-- `components/ui/sidebar.tsx`: Contains all the low-level UI logic, context, and layout for the sidebar, including SidebarProvider, Sidebar, SidebarMenu, SidebarMenuButton, and related UI primitives.
-- `hooks/use-mobile.ts`: Custom hook to detect mobile viewport, used for responsive sidebar behavior.
-- `lib/utils.ts`: Utility functions (e.g., `cn` for className merging) used throughout UI components.
+## Installation & Usage
 
-## How the Sidebar is Built
+1. Clone the repo  
+   git clone https://github.com/yourusername/cloud-saver.git
+   cd cloud-saver
 
-- The sidebar is composed in `app-sidebar.tsx` using the SidebarProvider and Sidebar components from `ui/sidebar.tsx`.
-- Navigation items are passed to `NavMain`, which renders them as menu buttons using `SidebarMenuButton`.
-- User info and secondary links are rendered via `NavUser` and `NavSecondary`.
-- All layout, state, and responsive logic is handled in `ui/sidebar.tsx`.
-- For styling, Tailwind CSS utility classes are used throughout.
+2. Install backend dependencies  
+   cd backend
+   pip install -r requirements.txt
 
-## To Add or Edit Sidebar Items
+3. Install frontend dependencies  
+   cd ../frontend
+   npm install
 
-- Edit the `navMain` array in `app-sidebar.tsx` to add, remove, or change main menu items.
-- For user info, update the `user` object in `app-sidebar.tsx`.
-- For secondary links, update the `navSecondary` array in `app-sidebar.tsx`.
+4. Run backend and frontend  
+   In backend folder:
+   uvicorn main:app --reload
 
-## To Change Sidebar Layout or Behavior
+   In frontend folder:
+   npm run dev
 
-- Edit `ui/sidebar.tsx` for layout, state management, or responsive logic.
-- Use `use-mobile.ts` to adjust mobile-specific behavior.
+5. Open your browser at `http://localhost:3000` to access the dashboard.
 
-## General Guidance
+---
 
-- All sidebar-related files are in `components/` or `components/ui/`.
-- Use relative imports from `@/components/...` for consistency.
-- Keep logic in hooks and UI in components for maintainability.
+## How to Start the Frontend
 
-## What Not to Do
+1. Open a terminal and navigate to the `frontend` directory:
+   cd frontend
+2. Install dependencies:
+   npm install
+3. Start the development server:
+   npm run dev
+4. The app will be available at [http://localhost:3000](http://localhost:3000)
 
-- Do not use global CSS classes, prefer Tailwind
-- Do not use dynamic code in SSR render (avoid `Date.now()`, `Math.random()`, etc.)
-- Do not access the Azure API directly from the frontend
+---
+
+## Contribution
+
+Cloud Saver is an open source project and welcomes contributions!  
+If you want to help improve the tool, please:
+
+- Check the [issues](https://github.com/yourusername/cloud-saver/issues) for tasks and feature requests
+- Open a new issue if you find bugs or want to suggest new features
+- Fork the repo and submit pull requests with clear descriptions
+
+Your feedback and ideas will help shape the future of Cloud Saver.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+If you want to discuss the project, request features, or need help deploying Cloud Saver in your environment, feel free to contact me at [your-email@example.com].
+
+---
+
+_Thank you for your interest in Cloud Saver!_
