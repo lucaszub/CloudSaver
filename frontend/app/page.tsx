@@ -6,7 +6,7 @@ export default function Page() {
     <div className="h-full flex flex-col">
       <SiteHeader />
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Azure Cost API Area Chart</h1>
+        <h1 className="text-2xl font-bold mb-4">Azure Cost Overview</h1>
         <ChartAreaAzureCostFetch />
       </div>
     </div>

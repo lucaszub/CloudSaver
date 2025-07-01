@@ -23,7 +23,7 @@ group_cost = get_costs_by_resource_group(access_token=token)
 print(json.dumps(group_cost, indent=2))
 
 print("\n=== Coûts sur une période personnalisée ===")
-custom_cost = get_costs_custom_period(access_token=token, start_date="2025-06-01", end_date="2025-06-10")
+custom_cost = get_costs_custom_period(access_token=token, start_date="2025-05-01", end_date="2025-06-10")
 print(json.dumps(custom_cost, indent=2))
 
 print("\n=== Coûts par ressource ===")
